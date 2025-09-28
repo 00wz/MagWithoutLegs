@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IDamageable
         _health = Mathf.Clamp(_health + value, 0, maxHealth);
         Debug.Log($"Received {value} health. All: {_health}");
         //_hud.SetHealth(_health);
+        CheckForDeath();
     }
 
     public float GetHealth() => _health;
@@ -57,7 +58,6 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     private void ProcessInput()
     {
         for (int i = 0; i < _spellsCooldowns.Length; i++)
@@ -84,7 +84,9 @@ public class Player : MonoBehaviour, IDamageable
 
     private void CheckForDeath()
     {
-        if (_health == 0)
-            OnDied?.Invoke();
+        if (_health != 0) return;
+        
+        Debug.Log("Died");
+        OnDied?.Invoke();
     }
 }

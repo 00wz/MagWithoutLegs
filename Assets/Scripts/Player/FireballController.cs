@@ -31,12 +31,10 @@ public class FireballController : MonoBehaviour
         
         foreach (var collision in collisionsInRadius)
         {
-            Debug.Log(collision.gameObject.name);
             var closestPointPosition = collision.ClosestPoint(position2D);
             var multiplier = 1 - Vector2.Distance(position2D, closestPointPosition) / explosionRadius;
 
             var force = (closestPointPosition - position2D).normalized * multiplier * explosionForce;
-            //collision.attachedRigidbody.AddExplosionForce(explosionForce, position, explosionRadius);
             collision.attachedRigidbody.AddForce(force, ForceMode2D.Impulse);
             
             var damageable = collision.gameObject.GetComponent<IDamageable>();
