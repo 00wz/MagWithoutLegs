@@ -135,7 +135,8 @@ MonoBehaviour:
   damage: 0.1
   attackCooldawnTime: 1
   mooveSpeed: 1
-  heath: 100
+  maxHealth: 100
+  health: 100
   progressBar: {fileID: 265766640865278145}
 --- !u!70 &6614185484778345481
 CapsuleCollider2D:

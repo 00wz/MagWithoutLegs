@@ -8,7 +8,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     [SerializeField] private float damage = 0.1f;
     [SerializeField] private float attackCooldawnTime = 1f;
     [SerializeField] private float mooveSpeed = 1f;
-    [SerializeField] private float heath = 1f;
+    [SerializeField] private float maxHealth = 1f;
+    [SerializeField] private float health = 1f;
     [SerializeField] private ProgressBar progressBar;
     private Transform _targetTransform;
     private IDamageable _targetDamageable;
@@ -24,14 +25,14 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     public float GetHealth()
     {
-        return heath;
+        return health;
     }
 
     public void TakeHealth(float value)
     {
-        heath += value;
-        progressBar.SetProgress(value);
-        if (heath <= 0)
+        health += value;
+        progressBar.SetProgress(health/maxHealth);
+        if (health <= 0)
         {
             Dead();
         }
