@@ -11,7 +11,7 @@ public class ProjectileController : MonoBehaviour
 
     private void Update()
     {
-        rb.linearVelocity = transform.forward * speed * Time.deltaTime;
+        rb.linearVelocity = transform.forward * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -33,7 +33,8 @@ public class ProjectileController : MonoBehaviour
             var closestPointPosition = collision.ClosestPoint(position2D);
             var multiplier = 1 - Vector2.Distance(position2D, closestPointPosition) / explosionRadius;
 
-            var force = (closestPointPosition - position2D).normalized * multiplier * explosionForce;
+            var collisionPosition2D = new Vector2(collision.transform.position.x, collision.transform.position.y);
+            var force = (collisionPosition2D - position2D).normalized * multiplier * explosionForce;
             collision.attachedRigidbody.AddForce(force, ForceMode2D.Impulse);
             
             var damageable = collision.gameObject.GetComponent<IDamageable>();
