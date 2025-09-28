@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    TakeHealth(float value);
+    void TakeHealth(float value);
 
     float GetHealth();
 }

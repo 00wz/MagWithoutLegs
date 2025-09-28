@@ -2,11 +2,11 @@ using UnityEngine;
 
 public interface IHUD
 {
-    SetHealth(float value);
+    void SetHealth(float value);
 
-    SetHealCooldown(float value);
+    void SetHealCooldown(float value);
 
-    SetFireballCooldown(float value);
+    void SetFireballCooldown(float value);
 
-    SetTargetHealth(float value);
+    void SetTargetHealth(float value);
 }
