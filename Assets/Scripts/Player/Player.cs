@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable
 {
     private float _health;
     private IHUD _hud;
@@ -21,7 +20,8 @@ public sealed class Player : MonoBehaviour, IDamageable
     public void TakeHealth(float value)
     {
         _health = Mathf.Clamp(_health + value, 0, maxHealth);
-        _hud.SetHealth(_health);
+        Debug.Log($"Received {value} health. All: {_health}");
+        //_hud.SetHealth(_health);
     }
 
     public float GetHealth() => _health;
@@ -80,8 +80,6 @@ public sealed class Player : MonoBehaviour, IDamageable
 
         var hand = handsRoots[_currentSpellIndex % 2];
         spell.Cast(hand.position, hand.forward);
-        
-        Debug.Log($"Casted {spell.SpellName}");
     }
 
     private void CheckForDeath()

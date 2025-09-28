@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 153951822}
   - component: {fileID: 153951824}
   - component: {fileID: 153951823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865573177}
   - component: {fileID: 865573178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hand Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950341486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Hand Root
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -602,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973047904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: === LEVEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985211472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Hand Root
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -667,7 +667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1099114905}
   - component: {fileID: 1099114906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Body Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 1126663173}
   - component: {fileID: 1126663176}
   - component: {fileID: 1126663175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: === PLAYER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244133973}
   - component: {fileID: 1244133974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hand Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

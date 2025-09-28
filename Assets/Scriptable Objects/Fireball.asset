@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 0.5
   SpellName: Fireball
+  _prefab: {fileID: 7649527916098359971, guid: ef1c000c0492f394c83cb0b6176fde39, type: 3}
