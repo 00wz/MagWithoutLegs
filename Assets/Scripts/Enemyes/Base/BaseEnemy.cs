@@ -77,7 +77,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         {
             return;
         }
-        
+
         if (_targetTransform != null)
         {
             if (Vector3.Distance(_targetTransform.position, transform.position) < attackRadius)
@@ -104,5 +104,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         _targetDamageable.TakeHealth(-damage);
         _lastAttackTimestamp = Time.time;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }

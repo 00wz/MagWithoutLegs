@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb563ff043125945b493d7c03f8f579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRadius: 1
+  attackRadius: 2
   damage: 0.1
   attackCooldawnTime: 1
   mooveSpeed: 1
-  heath: 1
+  heath: 100
   progressBar: {fileID: 265766640865278145}
 --- !u!70 &6614185484778345481
 CapsuleCollider2D:
