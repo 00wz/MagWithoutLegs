@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ui:Style src="Menu.uss"/>
+  <ui:VisualElement class="menu-root">
+    <ui:Label text="Меню" class="menu-title"/>
+    <ui:Button name="PlayButton" text="Играть" class="menu-button"/>
+    <ui:Button name="ExitButton" text="Выйти" class="menu-button"/>
+  </ui:VisualElement>
+</ui:UXML>
