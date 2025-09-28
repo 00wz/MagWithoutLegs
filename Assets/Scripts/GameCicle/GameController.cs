@@ -5,10 +5,17 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private IHUD hud;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject loseScreen;
     private List<BaseEnemy> _enemies;
     private Player _player;
     private BasePrincess _princess;
     private bool _endGame = false;
+    void Awake()
+    {
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
+    }
     void Start()
     {
         _enemies = new List<BaseEnemy>(FindObjectsByType<BaseEnemy>(FindObjectsSortMode.None));
@@ -47,6 +54,10 @@ public class GameController : MonoBehaviour
             return;
         }
         _endGame = true;
+
+        //loseScreen.SetActive(true);
+        Debug.Log("Loooose!!!");
+        Time.timeScale = 0f;
     }
 
     private void OnWin()
@@ -57,5 +68,8 @@ public class GameController : MonoBehaviour
         }
         _endGame = true;
 
+        //winScreen.SetActive(true);
+        Debug.Log("Wiin!!!");
+        Time.timeScale = 0f;
     }
 }

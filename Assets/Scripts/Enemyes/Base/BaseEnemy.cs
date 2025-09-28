@@ -81,6 +81,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         if (_targetTransform != null)
         {
+            RotateToTarget();
             if (Vector3.Distance(_targetTransform.position, transform.position) < attackRadius)
             {
                 if (_lastAttackTimestamp + attackCooldawnTime < Time.time)
@@ -105,6 +106,18 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         _targetDamageable.TakeHealth(-damage);
         _lastAttackTimestamp = Time.time;
+    }
+
+    private void RotateToTarget()
+    {
+        if (Math.Sign((_targetTransform.position - transform.position).x) < 0f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
     }
 
     void OnDrawGizmos()

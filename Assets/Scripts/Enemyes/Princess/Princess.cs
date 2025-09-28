@@ -3,27 +3,31 @@ using UnityEngine;
 
 public class BasePrincess : MonoBehaviour, IDamageable
 {
-    public event Action OnDied;
+    [SerializeField] private float maxHealth = 1f;
+    [SerializeField] private float health = 1f;    public event Action OnDied;
+    [SerializeField] private ProgressBar progressBar;
+    private bool _isDead = false;
 
     public float GetHealth()
     {
-        throw new NotImplementedException();
+        return health;
     }
 
     public void TakeHealth(float value)
     {
-        throw new NotImplementedException();
+        health += value;
+        progressBar.SetProgress(health/maxHealth);
+        if (health <= 0)
+        {
+            Dead();
+        }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Dead()
     {
-        
+        _isDead = true;
+
+        Destroy(gameObject);
     }
 }
