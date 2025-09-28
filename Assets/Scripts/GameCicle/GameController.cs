@@ -13,8 +13,8 @@ public class GameController : MonoBehaviour
     private bool _endGame = false;
     void Awake()
     {
-        winScreen.SetActive(false);
-        loseScreen.SetActive(false);
+        // winScreen?.SetActive(false);
+        // loseScreen?.SetActive(false);
     }
     void Start()
     {
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         }
         _endGame = true;
 
-        //loseScreen.SetActive(true);
+        // loseScreen?.SetActive(true);
         Debug.Log("Loooose!!!");
         Time.timeScale = 0f;
     }
@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
         }
         _endGame = true;
 
-        //winScreen.SetActive(true);
+        // winScreen?.SetActive(true);
         Debug.Log("Wiin!!!");
         Time.timeScale = 0f;
     }
