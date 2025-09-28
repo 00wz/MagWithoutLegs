@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private IHUD hud;
     private List<BaseEnemy> _enemies;
-    private PlayerController _player;
+    private Player _player;
     private BasePrincess _princess;
     private bool _endGame = false;
     void Start()
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
             e.OnDied += deadEvent;
         }
 
-        _player = FindAnyObjectByType<PlayerController>();
+        _player = FindAnyObjectByType<Player>();
         if (_player != null)
         {
             _player.OnDied += OnLose;

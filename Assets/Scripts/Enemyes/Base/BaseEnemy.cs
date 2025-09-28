@@ -36,7 +36,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
             return;
         }
 
-        _targetTransform = other.GetComponentInParent<PlayerController>()?.transform
+        _targetTransform = other.GetComponentInParent<Player>()?.transform
          ?? other.GetComponentInParent<BasePrincess>()?.transform;
         if (_targetTransform == null)
         {
