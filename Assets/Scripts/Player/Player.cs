@@ -1,18 +1,22 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class Player : MonoBehaviour, IDamageable
 {
     private float _health;
     private IHUD _hud;
-    private float _handsXOffset;
+    private int _currentSpellIndex;
+    private float[] _spellsCooldowns;
 
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private GameObject hudObject;
-    [SerializeField] private Transform handsRoot;
     [SerializeField] private new Camera camera;
     [SerializeField] private SpriteRenderer bodySpriteRenderer;
-    [SerializeField] private SpriteRenderer handsSpriteRenderer;
+    [SerializeField] private Transform[] handsRoots;
+    [SerializeField] private SpriteRenderer[] handsSpriteRenderers;
+    [SerializeField] private Spell[] spells;
+    [SerializeField] private KeyCode spellChangingKey = KeyCode.Q;
     
     public void TakeHealth(float value)
     {
@@ -27,26 +31,57 @@ public sealed class Player : MonoBehaviour, IDamageable
     private void Awake()
     {
         _health = maxHealth;
-        _handsXOffset = handsRoot.localPosition.x;
         // Открыть при разработке интерфейса.
         //_hud = hudObject.GetComponent<IHUD>();
+        
+        _spellsCooldowns = new float[spells.Length];
     }
     
     private void Update()
     {
         RotateHands();
+        ProcessInput();
     }
 
     private void RotateHands()
     {
         var worldCursorPosition = camera.ScreenToWorldPoint(Input.mousePosition);
         worldCursorPosition.z = 0;
-        handsRoot.LookAt(worldCursorPosition);
         
         var cursorOnRight = worldCursorPosition.x - transform.position.x >= 0;
         bodySpriteRenderer.flipX = !cursorOnRight;
-        handsSpriteRenderer.flipX = !cursorOnRight;
-        handsRoot.localPosition = new Vector3(_handsXOffset * (cursorOnRight ? 1 : -1), handsRoot.localPosition.y, 0);
+        for (int i = 0; i < handsRoots.Length; i++)
+        {
+            handsRoots[i].LookAt(worldCursorPosition);
+            handsSpriteRenderers[i].flipX = !cursorOnRight;
+        }
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    private void ProcessInput()
+    {
+        for (int i = 0; i < _spellsCooldowns.Length; i++)
+            _spellsCooldowns[i] = _spellsCooldowns[i] - Time.deltaTime >= 0 ? _spellsCooldowns[i] - Time.deltaTime : 0;
+
+        if (Input.GetKeyDown(spellChangingKey))
+        {
+            _currentSpellIndex = _currentSpellIndex + 1 == spells.Length ? 0 : _currentSpellIndex + 1;
+            Debug.Log($"Switched to {spells[_currentSpellIndex].SpellName}");
+        }
+        
+        if (Input.GetMouseButtonDown(0) && _spellsCooldowns[_currentSpellIndex] == 0)
+            CastSpell();
+    }
+
+    private void CastSpell()
+    {
+        var spell = spells[_currentSpellIndex];
+        _spellsCooldowns[_currentSpellIndex] = spell.Cooldown;
+
+        var hand = handsRoots[_currentSpellIndex % 2];
+        spell.Cast(hand.position, hand.forward);
+        
+        Debug.Log($"Casted {spell.SpellName}");
     }
 
     private void CheckForDeath()
