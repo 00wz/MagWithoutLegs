@@ -5,8 +5,8 @@ public class Player : MonoBehaviour, IDamageable
 {
     private float _health;
     private IHUD _hud;
-    private int _currentSpellIndex;
-    private float[] _spellsCooldowns;
+    private float _fireballCooldown;
+    private float _healCooldown;
 
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private GameObject hudObject;
@@ -14,14 +14,13 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private SpriteRenderer bodySpriteRenderer;
     [SerializeField] private Transform[] handsRoots;
     [SerializeField] private SpriteRenderer[] handsSpriteRenderers;
-    [SerializeField] private Spell[] spells;
-    [SerializeField] private KeyCode spellChangingKey = KeyCode.Q;
+    [SerializeField] private Spell fireball;
+    [SerializeField] private Spell heal;
     
     public void TakeHealth(float value)
     {
         _health = Mathf.Clamp(_health + value, 0, maxHealth);
-        Debug.Log($"Received {value} health. All: {_health}");
-        //_hud.SetHealth(_health);
+        _hud.SetHealth(_health);
         CheckForDeath();
     }
 
@@ -32,10 +31,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Awake()
     {
         _health = maxHealth;
-        // Открыть при разработке интерфейса.
-        //_hud = hudObject.GetComponent<IHUD>();
-        
-        _spellsCooldowns = new float[spells.Length];
+        _hud = hudObject.GetComponent<IHUD>();
     }
     
     private void Update()
@@ -60,25 +56,31 @@ public class Player : MonoBehaviour, IDamageable
 
     private void ProcessInput()
     {
-        for (int i = 0; i < _spellsCooldowns.Length; i++)
-            _spellsCooldowns[i] = _spellsCooldowns[i] - Time.deltaTime >= 0 ? _spellsCooldowns[i] - Time.deltaTime : 0;
-
-        if (Input.GetKeyDown(spellChangingKey))
-        {
-            _currentSpellIndex = _currentSpellIndex + 1 == spells.Length ? 0 : _currentSpellIndex + 1;
-            Debug.Log($"Switched to {spells[_currentSpellIndex].SpellName}");
-        }
+        _fireballCooldown = _fireballCooldown - Time.deltaTime >= 0 ? _fireballCooldown - Time.deltaTime : 0;
+        _healCooldown = _healCooldown - Time.deltaTime >= 0 ? _healCooldown - Time.deltaTime : 0;
         
-        if (Input.GetMouseButtonDown(0) && _spellsCooldowns[_currentSpellIndex] == 0)
-            CastSpell();
+        if (Input.GetMouseButtonDown(0) && _fireballCooldown == 0)
+            CastSpell(fireball);
+        else if (Input.GetMouseButtonDown(1) && _healCooldown == 0)
+            CastSpell(heal);
     }
 
-    private void CastSpell()
+    private void CastSpell(Spell spell)
     {
-        var spell = spells[_currentSpellIndex];
-        _spellsCooldowns[_currentSpellIndex] = spell.Cooldown;
+        var isFireball = spell.SpellName == "Fireball";
 
-        var hand = handsRoots[_currentSpellIndex % 2];
+        if (isFireball)
+        {
+            _fireballCooldown = fireball.Cooldown;
+            _hud.SetFireballCooldown();
+        }
+        else
+        {
+            _healCooldown = heal.Cooldown;
+            _hud.SetHealCooldown();
+        }
+
+        var hand = handsRoots[isFireball ? 0 : 1];
         spell.Cast(hand.position, hand.forward);
     }
 

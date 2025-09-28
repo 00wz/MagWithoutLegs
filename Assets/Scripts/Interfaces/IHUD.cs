@@ -4,9 +4,9 @@ public interface IHUD
 {
     void SetHealth(float value);
 
-    void SetHealCooldown(float value);
+    void SetHealCooldown();
 
-    void SetFireballCooldown(float value);
+    void SetFireballCooldown();
 
     void SetTargetHealth(float value);
 }

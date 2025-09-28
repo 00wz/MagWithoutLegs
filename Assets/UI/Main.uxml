@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:ProgressBar value="22" title="HP" name="player-health" low-value="0" style="width: 100px;" />
+        <ui:ProgressBar value="22" title="Target HP" name="target-health" low-value="0" style="width: 100px;" />
+        <ui:Label text="Fireball: 1s" name="fireball-cooldown" />
+        <ui:Label text="Heal: 1s" name="heal-cooldown" />
+    </ui:VisualElement>
+</ui:UXML>
