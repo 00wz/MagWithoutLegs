@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d8dc7a34a1460da76e3ede4793fee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 99beea1d8cc8401b89cdf7fba521c12f, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
   Cooldown: 1
   SpellName: Heal
+  _prefab: {fileID: 7649527916098359971, guid: fa3b33a0666c12347b7c86a6f766a583, type: 3}

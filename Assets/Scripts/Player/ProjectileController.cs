@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class FireballController : MonoBehaviour
+public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;

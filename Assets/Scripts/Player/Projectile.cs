@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Fireball")]
-public class Fireball : Spell
+[CreateAssetMenu(menuName = "Spells/Projectile")]
+public class Projectile : Spell
 {
-    [SerializeField] private FireballController _prefab;
+    [SerializeField] private ProjectileController _prefab;
     
     public override void Cast(Vector3 castOriginPosition, Vector3 castDirection)
     {

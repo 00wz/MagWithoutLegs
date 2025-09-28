@@ -851,7 +851,7 @@ MonoBehaviour:
   - {fileID: 865573178}
   spells:
   - {fileID: 11400000, guid: 7db6c01f96b8af4429b83f175388ba76, type: 2}
-  - {fileID: 11400000, guid: 160bbf88cde43c347ad898232e836e30, type: 2}
+  - {fileID: 11400000, guid: d5843fdea6f6d1a49b2001b832e05ecb, type: 2}
   spellChangingKey: 113
 --- !u!50 &1126663176
 Rigidbody2D:
